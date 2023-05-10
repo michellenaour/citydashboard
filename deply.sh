@@ -10,6 +10,6 @@ git init
 git add -A
 git commit -m 'New Deploment'
 
-git push -f git@github.com:michellenaour/vitydashboard.git master:main
+git push -f git@github.com:michellenaour/citydashboard.git master:main
 #d
 cd -
