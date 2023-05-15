@@ -214,7 +214,7 @@ export default {
               grid: [
                 ["green", "red", "green", "red", "green", "red"],
                 ["green", "green", "red", "green", "red", "green"],
-                ["green", "red", "green", "red", "green", "red"],
+                ["green", "green", "green", "red", "green", "red"],
                 ["green", "green", "red", "green", "red", "green"],
                 ["red", "red", "green", "red", "green", "red"],
               ],
