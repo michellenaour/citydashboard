@@ -1,5 +1,5 @@
 <template>
-    <div class="padding-wrapper">
+  <div class="padding-wrapper">
     <v-card :padding="4">
       <v-tabs
         v-model="tab"
@@ -9,7 +9,6 @@
         icons-and-text
       >
         <v-tabs-slider></v-tabs-slider>
-  
         <v-tab href="#tab-1">
           Categorias
           <v-icon>mdi-chart-areaspline</v-icon>
@@ -18,9 +17,7 @@
           Radar
           <v-icon>mdi-radar</v-icon>
         </v-tab>
-  
       </v-tabs>
-  
       <v-tabs-items v-model="tab">
         <v-tab-item value="tab-1">
           <Cont />
@@ -30,27 +27,26 @@
         </v-tab-item>
       </v-tabs-items>
     </v-card>
-</div>
-  </template>
+  </div>
+</template>
   
   
   <script>
-  import Radar from '@/components/Radar/Radar.vue'
-  import Cont from '@/components/Categorias/List.vue'
- 
-  
-  export default {
-    components: {
-      Radar,
-      Cont,
-    },
-    data() {
-      return {
-        tab: null,
-      }
-    },
-  }
-  </script>
+import Radar from "@/components/Radar/Radar.vue";
+import Cont from "@/components/Categorias/List.vue";
+
+export default {
+  components: {
+    Radar,
+    Cont,
+  },
+  data() {
+    return {
+      tab: null,
+    };
+  },
+};
+</script>
   
   <style>
 .padding-wrapper {

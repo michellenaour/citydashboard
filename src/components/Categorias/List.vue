@@ -10,12 +10,12 @@
             :style="{ backgroundColor: category.color }"
           >
             <div class="category-header" @click="toggleSubtopics(category)">
-              <i :class="category.icon"></i>
-              <span class="category-title">{{ category.title }}</span>
+              <i :class="[category.icon, 'white--text']"></i>
+              <span class="category-title white--text">{{ category.title }}</span>
               <i
                 :class="{
-                  'mdi mdi-chevron-down': category.showSubtopics,
-                  'mdi mdi-chevron-up': !category.showSubtopics,
+                  'mdi mdi-chevron-down white--text': category.showSubtopics,
+                  'mdi mdi-chevron-up white--text': !category.showSubtopics,
                 }"
               ></i>
             </div>
@@ -27,7 +27,7 @@
                 :style="{ backgroundColor: category.color }"
                 @click="selectSubtopic(category, subtopic)"
               >
-                <span class="subtopic-title">{{ subtopic.title }}</span>
+              <span class="subtopic-title white--text" :style="{ fontWeight: subtopic === selectedSubtopic ? 'bold' : 'normal' }">{{ subtopic.title }}</span>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default {
               ],
             },
           ],
-          color: "#F44336",
+          color: "#c93b30",
         },
         {
           id: 2,
@@ -109,7 +109,7 @@ export default {
               ],
             },
           ],
-          color: "#673AB7",
+          color: "#58329c",
         },
         {
           id: 3,
@@ -142,7 +142,7 @@ export default {
               ],
             },
           ],
-          color: "#3F51B5",
+          color: "#354394"
         },
         {
           id: 4,
@@ -187,7 +187,7 @@ export default {
               ],
             },
           ],
-          color: "#2196F3",
+          color: "#1172bf",
         },
         {
           id: 5,
@@ -220,7 +220,7 @@ export default {
               ],
             },
           ],
-          color: "#4CAF50",
+          color: "#3a853d",
         },
         {
           id: 6,
@@ -234,7 +234,7 @@ export default {
               pob_value: 75,
               grid: [
                 ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "yellow", "green", "red", "green"],
+                ["green", "green", "green", "green", "red", "green"],
                 ["green", "red", "green", "red", "green", "red"],
                 ["green", "green", "red", "green", "red", "green"],
                 ["red", "red", "green", "red", "green", "red"],
@@ -253,45 +253,46 @@ export default {
               ],
             },
           ],
-          color: "#FF9800",
+          color: "#a35105",
         },
       ],
     };
   },
   methods: {
-    toggleSubtopics(category) {
-      category.showSubtopics = !category.showSubtopics;
+  toggleSubtopics(category) {
+    if (category.showSubtopics) {
+      // Do nothing if the clicked category is already expanded
+      return;
+    }
 
-      // Close subtopics of other categories
-      this.categories.forEach((cat) => {
-        if (cat !== category) {
-          cat.showSubtopics = false;
-        }
-      });
+    // Close subtopics of other categories
+    this.categories.forEach((cat) => {
+      if (cat !== category) {
+        cat.showSubtopics = false;
+      }
+    });
 
-      if (category.showSubtopics) {
-        const activeSubtopic = category.subtopics[0];
-        this.selectSubtopic(category, activeSubtopic);
-      } else {
-        this.selectSubtopic(category, null); // Deselect subtopic when collapsing category
-      }
-    },
-    selectSubtopic(category, subtopic) {
-      this.selectedCategory = category;
-      if (subtopic) {
-        this.selectedSubtopic = subtopic;
-      } else if (category.subtopics.length > 0) {
-        this.selectedSubtopic = category.subtopics[0]; // Select the first subtopic if none is provided
-      } else {
-        this.selectedSubtopic = null; // No subtopics available
-      }
-      this.$emit(
-        "categorySelected",
-        this.selectedCategory,
-        this.selectedSubtopic
-      );
-    },
+    category.showSubtopics = true;
+    const activeSubtopic = category.subtopics[0];
+    this.selectSubtopic(category, activeSubtopic);
   },
+  selectSubtopic(category, subtopic) {
+    this.selectedCategory = category;
+    if (subtopic) {
+      this.selectedSubtopic = subtopic;
+    } else if (category.subtopics.length > 0) {
+      this.selectedSubtopic = category.subtopics[0]; // Select the first subtopic if none is provided
+    } else {
+      this.selectedSubtopic = null; // No subtopics available
+    }
+    this.$emit(
+      "categorySelected",
+      this.selectedCategory,
+      this.selectedSubtopic
+    );
+  },
+},
+
   mounted() {
     if (this.categories.length > 0) {
       const initialCategory = this.categories[0];
