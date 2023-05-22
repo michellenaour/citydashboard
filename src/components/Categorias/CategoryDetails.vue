@@ -2,6 +2,7 @@
     <div class="category-details padding-wrapper">
       <div v-if="category && subtopic">
         <h4 class="margin">{{ subtopic.title }}</h4>
+        <p class="margin  parag">{{ subtopic.description }}</p>
         <h5 class="margin">Indicador poblacional</h5>
         <v-progress-linear  class="margin" color="deep-purple" height="10" :value="subtopic.pob_value" rounded></v-progress-linear>
         <h5 class="margin">Indicador de distancia</h5>
@@ -64,6 +65,9 @@ export default {
 .subtopic {
   padding: 5px;
   font-size: 14px;
+}
+.parag{
+  font-size: 10px;
 }
 </style>
   

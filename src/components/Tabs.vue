@@ -1,6 +1,6 @@
 <template>
   <div class="padding-wrapper">
-    <v-card :padding="4">
+    <v-card >
       <v-tabs
         v-model="tab"
         background-color="deep-purple accent-4"
@@ -19,11 +19,11 @@
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
-        <v-tab-item value="tab-1">
-          <Cont />
+        <v-tab-item value="tab-1" >
+          <Cont class="padding-wrapper" />
         </v-tab-item>
         <v-tab-item value="tab-2">
-          <radar />
+          <radar  class="padding-wrapper" />
         </v-tab-item>
       </v-tabs-items>
     </v-card>

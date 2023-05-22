@@ -11,7 +11,9 @@
           >
             <div class="category-header" @click="toggleSubtopics(category)">
               <i :class="[category.icon, 'white--text']"></i>
-              <span class="category-title white--text">{{ category.title }}</span>
+              <span class="category-title white--text">{{
+                category.title
+              }}</span>
               <i
                 :class="{
                   'mdi mdi-chevron-down white--text': category.showSubtopics,
@@ -21,13 +23,28 @@
             </div>
             <div class="subtopics" v-if="category.showSubtopics">
               <div
-                class="subtopic"
+                class="subtopic padding-wrapper "
                 v-for="subtopic in category.subtopics"
                 :key="subtopic.id"
-                :style="{ backgroundColor: category.color }"
+                
                 @click="selectSubtopic(category, subtopic)"
+                :class="{ 'selected-subtopic': subtopic === selectedSubtopic }"
               >
-              <span class="subtopic-title white--text" :style="{ fontWeight: subtopic === selectedSubtopic ? 'bold' : 'normal' }">{{ subtopic.title }}</span>
+                <span
+                  class="subtopic-title white--text"
+                  :style="{
+                    fontWeight:
+                      subtopic === selectedSubtopic ? 'bold' : 'normal',
+                  }"
+                  >{{ subtopic.title }}</span
+                >
+                <v-progress-linear
+                  height="10"
+                  :value="subtopic.total_value"
+                  :color="'rgba(250, 250, 250, 0.8)'"
+                  rounded
+                >
+                </v-progress-linear>
               </div>
             </div>
           </div>
@@ -38,8 +55,8 @@
           <category-details
             :category="selectedCategory"
             :subtopic="selectedSubtopic"
-          ></category-details
-        ></v-card>
+          ></category-details>
+        </v-card>
       </v-col>
     </v-row>
   </div>
@@ -48,6 +65,7 @@
 
 <script>
 import CategoryDetails from "./CategoryDetails.vue";
+import { categories } from "./categoryData.js";
 export default {
   components: {
     CategoryDetails,
@@ -56,242 +74,44 @@ export default {
     return {
       selectedCategory: null,
       selectedSubtopic: null,
-      categories: [
-        {
-          id: 1,
-          title: "Salud",
-          icon: "mdi mdi-hospital-building",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Salud Primaria",
-              pob_value: 20,
-              grid: [
-                ["green", "green", "green", "green", "red", "red"],
-                ["green", "red", "red", "red", "green", "red"],
-                ["green", "red", "red", "green", "red", "red"],
-                ["red", "red", "green", "red", "green", "red"],
-                ["green", "red", "red", "red", "red", "red"],
-              ],
-            },
-          ],
-          color: "#c93b30",
-        },
-        {
-          id: 2,
-          title: "Educación",
-          icon: "mdi mdi-school",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Educación Básica",
-              pob_value: 80,
-              grid: [
-                ["red", "red", "green", "red", "green", "red"],
-                ["red", "green", "red", "green", "red", "green"],
-                ["green", "green", "red", "red", "red", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "red", "red"],
-              ],
-            },
-            {
-              id: 2,
-              title: "Educación Media",
-              pob_value: 75,
-              grid: [
-                ["red", "green", "red", "green", "red", "green"],
-                ["green", "red", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "green", "green"],
-                ["green", "green", "red", "red", "red", "red"],
-                ["red", "red", "green", "red", "red", "green"],
-              ],
-            },
-          ],
-          color: "#58329c",
-        },
-        {
-          id: 3,
-          title: "Cultura",
-          icon: "mdi mdi-theater",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Bibliotecas",
-              pob_value: 50,
-              grid: [
-                ["green", "green", "green", "green", "red", "green"],
-                ["red", "red", "green", "green", "red", "red"],
-                ["green", "red", "green", "red", "green", "green"],
-                ["red", "green", "red", "red", "red", "red"],
-                ["green", "green", "red", "green", "red", "red"],
-              ],
-            },
-            {
-              id: 2,
-              title: "Sedes Sociales",
-              pob_value: 65,
-              grid: [
-                ["red", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "green", "red"],
-              ],
-            },
-          ],
-          color: "#354394"
-        },
-        {
-          id: 4,
-          title: "Deporte",
-          icon: "mdi mdi-football",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Gimnasios",
-              pob_value: 30,
-              grid: [
-                ["red", "green", "red", "red", "green", "red"],
-                ["green", "red", "red", "green", "red", "green"],
-                ["green", "green", "red", "red", "red", "red"],
-                ["green", "green", "red", "green", "green", "green"],
-                ["red", "green", "red", "red", "green", "green"],
-              ],
-            },
-            {
-              id: 2,
-              title: "Multicanchas",
-              pob_value: 40,
-              grid: [
-                ["red", "red", "green", "red", "red", "red"],
-                ["red", "green", "red", "green", "red", "green"],
-                ["green", "green", "green", "red", "green", "red"],
-                ["red", "red", "green", "green", "green", "red"],
-                ["green", "red", "red", "red", "green", "red"],
-              ],
-            },
-            {
-              id: 3,
-              title: "Canchas de Fútbol",
-              pob_value: 75,
-              grid: [
-                ["red", "green", "red", "green", "green", "red"],
-                ["red", "red", "green", "green", "red", "green"],
-                ["green", "green", "red", "red", "red", "red"],
-                ["green", "green", "red", "red", "red", "red"],
-                ["red", "red", "red", "green", "green", "green"],
-              ],
-            },
-          ],
-          color: "#1172bf",
-        },
-        {
-          id: 5,
-          title: "Áreas Verdes",
-          icon: "mdi mdi-forest",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Áreas Verdes",
-              pob_value: 75,
-              grid: [
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "green", "red"],
-              ],
-            },
-            {
-              id: 2,
-              title: "Parques",
-              pob_value: 75,
-              grid: [
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["green", "green", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "green", "red"],
-              ],
-            },
-          ],
-          color: "#3a853d",
-        },
-        {
-          id: 6,
-          title: "Movilidad",
-          icon: "mdi mdi-bike",
-          showSubtopics: false,
-          subtopics: [
-            {
-              id: 1,
-              title: "Subtopic 6.1",
-              pob_value: 75,
-              grid: [
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "green", "green", "red", "green"],
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["red", "red", "green", "red", "green", "red"],
-              ],
-            },
-            {
-              id: 2,
-              title: "Subtopic 6.2",
-              pob_value: 75,
-              grid: [
-                ["green", "green", "green", "red", "green", "red"],
-                ["green", "green", "red", "green", "red", "green"],
-                ["green", "red", "green", "red", "green", "red"],
-                ["green", "red", "green", "red", "green", "red"],
-                ["red", "red", "green", "red", "green", "red"],
-              ],
-            },
-          ],
-          color: "#a35105",
-        },
-      ],
+      categories: categories,
     };
   },
   methods: {
-  toggleSubtopics(category) {
-    if (category.showSubtopics) {
-      // Do nothing if the clicked category is already expanded
-      return;
-    }
-
-    // Close subtopics of other categories
-    this.categories.forEach((cat) => {
-      if (cat !== category) {
-        cat.showSubtopics = false;
+    toggleSubtopics(category) {
+      if (category.showSubtopics) {
+        // Do nothing if the clicked category is already expanded
+        return;
       }
-    });
 
-    category.showSubtopics = true;
-    const activeSubtopic = category.subtopics[0];
-    this.selectSubtopic(category, activeSubtopic);
+      // Close subtopics of other categories
+      this.categories.forEach((cat) => {
+        if (cat !== category) {
+          cat.showSubtopics = false;
+        }
+      });
+
+      category.showSubtopics = true;
+      const activeSubtopic = category.subtopics[0];
+      this.selectSubtopic(category, activeSubtopic);
+    },
+
+    selectSubtopic(category, subtopic) {
+      this.selectedCategory = category;
+      if (subtopic) {
+        this.selectedSubtopic = subtopic;
+      } else if (category.subtopics.length > 0) {
+        this.selectedSubtopic = category.subtopics[0]; // Select the first subtopic if none is provided
+      } else {
+        this.selectedSubtopic = null; // No subtopics available
+      }
+      this.$emit(
+        "categorySelected",
+        this.selectedCategory,
+        this.selectedSubtopic
+      );
+    },
   },
-  selectSubtopic(category, subtopic) {
-    this.selectedCategory = category;
-    if (subtopic) {
-      this.selectedSubtopic = subtopic;
-    } else if (category.subtopics.length > 0) {
-      this.selectedSubtopic = category.subtopics[0]; // Select the first subtopic if none is provided
-    } else {
-      this.selectedSubtopic = null; // No subtopics available
-    }
-    this.$emit(
-      "categorySelected",
-      this.selectedCategory,
-      this.selectedSubtopic
-    );
-  },
-},
 
   mounted() {
     if (this.categories.length > 0) {
@@ -346,6 +166,14 @@ export default {
 }
 .padding-wrapper {
   padding: 16px;
+  border-radius: 5px;
+}
+.progress-label {
+  font-size: 10px;
+  font-weight: bold;
+}
+.subtopic.selected-subtopic {
+  background-color: rgba(250, 250, 250, 0.2); /* Adjust the alpha value as needed (0.0 to 1.0) */
 }
 </style>
   

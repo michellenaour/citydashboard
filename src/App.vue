@@ -10,6 +10,7 @@ export default {
           { title: 'Métricas', icon: 'mdi-puzzle-edit' },
           { title: 'Indicadores', icon: 'mdi-list-box-outline' },
         ],
+        table: 'Temuco Centro' ,// New property with the desired value
         right: null,
       }
     },
@@ -19,7 +20,11 @@ export default {
 
 <template>
   <v-app >
-    <v-tool-bar > <h1>CityScope Dashboard</h1></v-tool-bar>
+    <v-tool-bar > 
+      <h1>CityScope Dashboard</h1>
+      <h3>Mesa: {{ table }}</h3>
+    </v-tool-bar>
+    
     <v-navigation-drawer app  expand-on-hover permanent clipped >
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" link>
