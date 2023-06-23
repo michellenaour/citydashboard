@@ -1,22 +1,16 @@
 <template>
-  <div class="home">
-    <List />
+  <div>
+    <h1>Mi Mapa</h1>
+    <Mapa />
   </div>
 </template>
 
 <script>
 
 
-
 export default {
-  name: 'Home',
   components: {
-    List: () => import("@/components/Categorias/List"),
-    
-  },
-  methods: {
-   
+    Mapa: ()=> import("@/components/Mapa"),
   }
-}
+};
 </script>
-

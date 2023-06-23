@@ -1,7 +1,7 @@
 <template>
-  <div class="padding-wrapper">
+  <div class="padding-wrapper" style="background-color: rgb(191, 233, 244);">
     <v-row>
-      <v-col>
+      <v-col cols="4">
         <div class="category-list">
           <div
             class="category"
@@ -66,6 +66,8 @@
 <script>
 import CategoryDetails from "./CategoryDetails.vue";
 import { categories } from "./categoryData.js";
+import { simulateDataChanges } from "./simulator.js";
+
 export default {
   components: {
     CategoryDetails,
@@ -114,6 +116,9 @@ export default {
   },
 
   mounted() {
+  
+  simulateDataChanges(2); // Ejecutar la simulación cada 5 segundos (puedes ajustar el intervalo según tu preferencia)
+
     if (this.categories.length > 0) {
       const initialCategory = this.categories[0];
       this.toggleSubtopics(initialCategory);
