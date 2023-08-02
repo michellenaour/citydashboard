@@ -66,7 +66,7 @@
 <script>
 import CategoryDetails from "./Categoria.vue";
 import { categories } from "./categoriasData.js";
-import { simulateDataChanges } from "../Simulador/simulator.js";
+//import { simulateDataChanges } from "../Simulador/simulator.js";
 
 export default {
   components: {
@@ -117,12 +117,12 @@ export default {
 
   mounted() {
   
-  simulateDataChanges(2); // Ejecutar la simulación cada 5 segundos (puedes ajustar el intervalo según tu preferencia)
+  /*simulateDataChanges(2); // Ejecutar la simulación cada 5 segundos (puedes ajustar el intervalo según tu preferencia)
 
     if (this.categories.length > 0) {
       const initialCategory = this.categories[0];
       this.toggleSubtopics(initialCategory);
-    }
+    }*/
   },
 };
 </script>

@@ -10,7 +10,7 @@
 
 export default {
   components: {
-    Mapa: ()=> import("@/components/Mapa"),
+    Mapa: ()=> import("@/components/lector.vue"),
   }
 };
 </script>

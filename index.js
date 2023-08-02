@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
+var cors = require('cors')
 
+app.use(cors()) // Use this after the variable declaration
 const routes = [
   {
     path: '/',

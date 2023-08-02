@@ -4,7 +4,7 @@
       <v-row dense >
         <v-col cols="2" >
           <v-btn @click="goToCategorias">
-            Categorías
+            Categoríass
           </v-btn>
         </v-col>
         <v-col cols="1">
