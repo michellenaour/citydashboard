@@ -33,7 +33,7 @@
   
   <script>
 import Radar from "@/components/Radar/Radar.vue";
-import Cont from "@/components/Categorias/Tabcategoria.vue";
+import Cont from "@/components/Categorias/ListaCategorias.vue";
 
 export default {
   components: {

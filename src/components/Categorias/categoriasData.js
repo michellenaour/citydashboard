@@ -15,14 +15,14 @@ export const categories = [
         description: "Cantidad de consultorios x habitantes",
         medida_p:"Cantidad de consultorios x habitantes",
         medida_d:"Equidistancias y distribución territorial en la atención de salud primaria",
-        estandar_p:"1 consultorio c/ 20 mil hab.",
+        estandarp:"1 consultorio c/ 20 mil hab.",
         estandar_d:"Radio de influencia 2 km lineales",
         grid: [
-          [1, 1, 1, 1, 0, 0],
-          [1, 0, 0, 0, 1, 0],
-          [1, 0, 0, 1, 0, 0],
-          [0, 0, 1, 0, 1, 0],
-          [1, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
         ]
 
       },

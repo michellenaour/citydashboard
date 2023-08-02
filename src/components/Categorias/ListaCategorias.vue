@@ -11,7 +11,7 @@
           >
             <div class="category-header" @click="toggleSubtopics(category)">
               <i :class="[category.icon, 'white--text']"></i>
-              <span class="category-title white--text">{{
+              <span class="category-title white--text">{{ 
                 category.title
               }}</span>
               <i
@@ -64,9 +64,9 @@
 
 
 <script>
-import CategoryDetails from "./CategoryDetails.vue";
-import { categories } from "./categoryData.js";
-import { simulateDataChanges } from "./simulator.js";
+import CategoryDetails from "./Categoria.vue";
+import { categories } from "./categoriasData.js";
+import { simulateDataChanges } from "../Simulador/simulator.js";
 
 export default {
   components: {

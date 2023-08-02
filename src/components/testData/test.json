@@ -1,0 +1,69 @@
+[
+    "Areas verdes",
+    [
+        "Bloque con indicador",
+        22,
+        "Bloques dentro del rango de inflencia",
+        [
+            3,
+            5,
+            6,
+            9,
+            10,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29
+        ],
+        "Valor actual de personas dentro del area",
+        1000,
+        "Valor optimo de personas dentro del area",
+        12000,
+        "Bloques sin influencia",
+        [
+            0
+        ]
+    ],
+    [
+        "Bloque con indicador",
+        1,
+        "Bloques dentro del rango de inflencia",
+        [
+            0,
+            3,
+            5,
+            6,
+            9,
+            10,
+            14,
+            15,
+            17,
+            18,
+            19,
+            20,
+            21
+        ],
+        "Valor actual de personas dentro del area",
+        546,
+        "Valor optimo de personas dentro del area",
+        6552,
+        "Bloques sin influencia",
+        [
+            23,
+            24,
+            26,
+            27,
+            28,
+            29
+        ]
+    ]
+]
